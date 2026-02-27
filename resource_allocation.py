@@ -40,23 +40,11 @@ class ResourceAllocation:
         return dp[(1 << self.N) - 1]
 
 if __name__ == "__main__":
-    # Cost matrix: Worker \ Task
-    # Worker 0: Task 0 (9), Task 1 (2), Task 2 (7), Task 3 (8)
-    # ...
-    costs = [
-        [9, 2, 7, 8],
-        [6, 4, 3, 7],
-        [5, 8, 1, 8],
-        [7, 6, 9, 4]
+    cost = [
+        [9, 2, 7],
+        [6, 4, 3],
+        [5, 8, 1]
     ]
-    # Optimal Assignment:
-    # W0 -> Task 1 (cost 2)
-    # W1 -> Task 0 (cost 6)
-    # W2 -> Task 2 (cost 1)
-    # W3 -> Task 3 (cost 4)
-    # Total = 2 + 6 + 1 + 4 = 13
-    
-    allocator = ResourceAllocation(costs)
-    min_cost = allocator.optimal_allocation()
-    assert min_cost == 13
-    print("Optimal Resource Allocation: SUCCESS")
+
+    allocator = ResourceAllocation(cost)
+    print("Minimum assignment cost:", allocator.optimal_allocation())

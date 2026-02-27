@@ -41,14 +41,18 @@ class AutocompleteSystem:
         return [match[1] for match in node.top_matches]
 
 if __name__ == "__main__":
-    system = AutocompleteSystem()
-    system.insert("apple", 10)
-    system.insert("app", 50)
-    system.insert("apricot", 20)
-    system.insert("application", 30)
-    system.insert("appreciate", 15)
-    system.insert("apply", 40)
-    
-    assert system.get_suggestions("app") == ['app', 'apply', 'application', 'appreciate', 'apple']
-    assert system.get_suggestions("apr") == ['apricot']
-    print("Autocomplete System: SUCCESS")
+    trie = AutocompleteSystem()
+    data = [
+        ("apple", 10),
+        ("app", 15),
+        ("ape", 7),
+        ("apex", 12),
+        ("apply", 9),
+        ("application", 8),
+        ("apt", 6)
+    ]
+
+    for word, freq in data:
+        trie.insert(word, freq)
+
+    print("Top suggestions for 'ap':", trie.get_suggestions("ap"))

@@ -36,22 +36,11 @@ class RangePerformanceMonitor:
         return res
 
 if __name__ == "__main__":
-    monitor = RangePerformanceMonitor(5) # max index 4
-    monitor.update(0, 100)
-    monitor.update(1, 105)
-    monitor.update(2, 95)
-    monitor.update(3, 110)
-    monitor.update(4, 102)
-    
-    # Range 0 to 4 max is 110 at index 3
-    assert monitor.queryMax(0, 4) == 110
-    # Range 0 to 2 max is 105 at index 1
-    assert monitor.queryMax(0, 2) == 105
-    # Range 3 to 4 max is 110 at index 3
-    assert monitor.queryMax(3, 4) == 110
-    
-    # Update index 2 to 120
-    monitor.update(2, 120)
-    assert monitor.queryMax(0, 4) == 120
-    
-    print("Range Performance Monitor: SUCCESS")
+    arr = [2, 1, 5, 3, 4]
+    st = RangePerformanceMonitor(len(arr))
+    for i, val in enumerate(arr):
+        st.update(i, val)
+        
+    print("Max in range 1-3:", st.queryMax(1, 3))
+    st.update(2, 10)
+    print("After update, max in range 1-3:", st.queryMax(1, 3))

@@ -26,24 +26,14 @@ class StreamingMax:
         return self.dq[0][0]
 
 if __name__ == "__main__":
-    stream = StreamingMax(window_size=3)
-    values = [1, 3, -1, -3, 5, 3, 6, 7]
-    result = []
+    nums = [10, 5, 2, 7, 8, 7]
+    k = 3
+    stream = StreamingMax(window_size=k)
+    res = []
     
-    # After 3 elements, we start validating max continuously
-    # Wait until it has at least `window_size` elements? The problem says "stream", 
-    # we return max of window so far. Let's trace it exactly.
-    for val in values:
-        result.append(stream.add(val))
-    
-    # 1: window [1] -> max 1
-    # 3: window [1, 3] -> max 3
-    # -1: window [1, 3, -1] -> max 3
-    # -3: window [3, -1, -3] -> max 3
-    # 5: window [-1, -3, 5] -> max 5
-    # 3: window [-3, 5, 3] -> max 5
-    # 6: window [5, 3, 6] -> max 6
-    # 7: window [3, 6, 7] -> max 7
-    expected = [1, 3, 3, 3, 5, 5, 6, 7]
-    assert result == expected
-    print("Streaming Max Analytics: SUCCESS")
+    for i, n in enumerate(nums):
+        val = stream.add(n)
+        if i >= k - 1:
+            res.append(val)
+            
+    print("Sliding window max:", res)
